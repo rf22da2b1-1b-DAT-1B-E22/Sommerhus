@@ -1,0 +1,62 @@
+﻿@page
+@model SonnerhusApp.Pages.Sommerhuse.IndexModel
+@{
+    ViewData["Title"] = "Alle Sommerhuse";
+}
+
+
+<h1>Sommerhuse til udlejning</h1>
+
+<div class="container">
+    <div class="row-cols-4">
+        <div class="col-md-2">
+            <form method="post" asp-page-handler="FilterMax">
+                <div class="form-group">
+                    <input type="text" asp-for="MaxPris" class="form-control" />
+                    <button class="btn btn-primary">Søg Maxpris</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Sted</th>
+            <th>Antal Sengepladser</th>
+            <th>Rengøring</th>
+            <th>Pris pr uge</th>
+            <th>Husdyr tilladt</th>
+            <th>Vaskemaskine</th>
+            <th>Opvaskemaskine</th>
+            <th>Spa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model.Sommerhuse)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.Sted</td>
+                <td>@s.AntalSenge</td>
+                @if (s.Rengøring)
+                {
+                    <td>Inkluderet</td>
+                }
+                else
+                {
+                    <td>Uden</td>
+                }
+                <td>@s.PrisPrUge</td>
+                <td>@Model.Convert2Str(s.Faciliteter.Husdyr)</td>
+                <td>@Model.Convert2Str(s.Faciliteter.Vaskemaskine)</td>
+                <td>@Model.Convert2Str(s.Faciliteter.Opvaskemaskine)</td>
+                <td>@Model.Convert2Str(s.Faciliteter.Spa)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p></p>

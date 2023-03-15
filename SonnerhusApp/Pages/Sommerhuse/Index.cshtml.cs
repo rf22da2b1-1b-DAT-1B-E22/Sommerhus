@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SommerhusLib.DecoratorPattern;
 using SommerhusLib.model;
 using SonnerhusApp.services;
 
@@ -45,7 +46,7 @@ namespace SonnerhusApp.Pages.Sommerhuse
         }
 
 
-        public void OnPostFilterMax()
+        public void OnPostFilter()
         {
             Sommerhuse = _service.GetAll();
 
@@ -89,7 +90,47 @@ namespace SonnerhusApp.Pages.Sommerhuse
             }
         }
 
+        public void OnPostFilterUseDecorator()
+        {
+            IFilter filter = new BasicNoFilter(_service.GetAll());
 
+            if (MaxPris is not null)
+            {
+                filter = new MaxPrisFilter(filter, MaxPris);
+            }
+
+            switch (Reng)
+            {
+                case "Med":
+                    filter = new MedRengøringFilter(filter); break;
+                case "Uden":
+                    filter = new UdenRengøringFilter(filter); break;
+                default:
+                    break; // ingen filtrering
+            }
+
+            if (Husdyr)
+            {
+                filter = new HusdyrFilter(filter);
+            }
+
+            if (Vask)
+            {
+                filter = new VaskemaskineFilter(filter);
+            }
+
+            if (Opvask)
+            {
+                filter = new OpvaskemaskineFilter(filter);
+            }
+
+            if (Spa)
+            {
+                filter = new SpaFilter(filter);
+            }
+
+            Sommerhuse = filter.Filter();
+        }
 
 
 

@@ -14,12 +14,26 @@ namespace SonnerhusApp.Pages.Sommerhuse
             _service = service;
         }
 
-
-
-
-
+        /*
+         * input fields
+         */
         [BindProperty]
-        public int MaxPris { get; set; }
+        public int? MaxPris { get; set; }
+        [BindProperty]
+        public String Reng { get; set; }
+        [BindProperty]
+        public bool Husdyr { get; set; }
+        [BindProperty]
+        public bool Vask { get; set; }
+        [BindProperty]
+        public bool Opvask { get; set; }
+        [BindProperty]
+        public bool Spa { get; set; }
+
+
+        /*
+         * reading fields
+         */
         public List<Sommerhus> Sommerhuse { get; set; }
 
 
@@ -33,8 +47,46 @@ namespace SonnerhusApp.Pages.Sommerhuse
 
         public void OnPostFilterMax()
         {
-            if (MaxPris == 0) MaxPris = int.MaxValue;
-            Sommerhuse = _service.GetAll().Where((s) => s.PrisPrUge <= MaxPris).ToList<Sommerhus>();
+            Sommerhuse = _service.GetAll();
+
+            if (MaxPris is not null)
+            {
+                Sommerhuse = Sommerhuse.Where((s) => s.PrisPrUge <= MaxPris).ToList();
+            }
+
+            switch (Reng)
+            {
+                case "Med":
+                    Sommerhuse = Sommerhuse.Where(s => s.Rengøring).ToList(); break;
+                case "Uden":
+                    Sommerhuse = Sommerhuse.Where(s => !s.Rengøring).ToList(); break;
+                default:
+                    break; // ingen filtrering
+            }
+
+            if (Husdyr)
+            {
+                Sommerhuse = Sommerhuse.Where(s => s.Faciliteter.Husdyr).ToList();
+
+            }
+
+            if (Vask)
+            {
+                Sommerhuse = Sommerhuse.Where(s => s.Faciliteter.Vaskemaskine).ToList();
+
+            }
+
+            if (Opvask)
+            {
+                Sommerhuse = Sommerhuse.Where(s => s.Faciliteter.Opvaskemaskine).ToList();
+
+            }
+
+            if (Spa)
+            {
+                Sommerhuse = Sommerhuse.Where(s => s.Faciliteter.Spa).ToList();
+
+            }
         }
 
 

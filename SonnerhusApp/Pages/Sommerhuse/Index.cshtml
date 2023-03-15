@@ -7,18 +7,34 @@
 
 <h1>Sommerhuse til udlejning</h1>
 
-<div class="container">
-    <div class="row-cols-4">
-        <div class="col-md-2">
-            <form method="post" asp-page-handler="FilterMax">
-                <div class="form-group">
-                    <input type="text" asp-for="MaxPris" class="form-control" />
-                    <button class="btn btn-primary">Søg Maxpris</button>
-                </div>
-            </form>
+
+
+<form method="post" asp-page-handler="FilterMax">
+    <div class="row">
+        <div class="col">
+            <label>Max pris pr uge</label><br>
+            <input type="text" asp-for="MaxPris" class="form-control" /><br />
+            <button class="btn btn-primary">Søg</button>
+        </div>
+
+        <div class="col">
+            <input type="radio" value="Med" asp-for="Reng">
+            <label for="Med">Med Rengøring</label><br>
+            <input type="radio" value="Uden" asp-for="Reng">
+            <label for="Uden">Uden Rengøring</label><br>
+            <input type="radio" value="IkkeVigtig" asp-for="Reng" checked="true">
+            <label for="IkkeVigtigt">Ikke vigtigt</label>
+        </div>
+        <div class="col">
+            <input type="checkbox" asp-for="Husdyr">   <label for="Husdyr"> Husdyr</label><br>
+            <input type="checkbox" asp-for="Vask">     <label for="Vask"> Vaskemaskine</label><br>
+            <input type="checkbox" asp-for="Opvask">   <label for="Opvask"> Opvaskemaskine</label><br>
+            <input type="checkbox" asp-for="Spa">      <label for="Spa"> Spa</label><br>
+            <br>
         </div>
     </div>
-</div>
+</form>
+
 
 <table class="table table-hover">
     <thead>

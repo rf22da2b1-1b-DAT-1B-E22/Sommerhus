@@ -55,15 +55,49 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Sted</th>
-            <th>Antal Sengepladser</th>
-            <th>Rengøring</th>
-            <th>Pris pr uge</th>
-            <th>Husdyr tilladt</th>
-            <th>Vaskemaskine</th>
-            <th>Opvaskemaskine</th>
-            <th>Spa</th>
+            <th>
+                <form method="post" asp-page-handler="SortById">
+                    <button class="btn btn-outline-success">Id</button>
+                </form>
+            </th>
+            <th><form method="post" asp-page-handler="SortBySted">
+                    <button class="btn btn-outline-success">Sted</button>
+                </form></th>
+            <th>
+                <form method="post" asp-page-handler="SortBySenge">
+                    <button class="btn btn-outline-success">Antal Sengepladser</button>
+                </form>
+            </th>
+            <th>
+                <form method="post" asp-page-handler="SortByReng">
+                    <button class="btn btn-outline-success">Rengøring</button>
+                </form>
+            </th>
+            <th>
+                <form method="post" asp-page-handler="SortByPris">
+                    <button class="btn btn-outline-success">Pris pr uge</button>
+                </form>
+            </th>
+            <th>
+                <form method="post" asp-page-handler="SortByHusdyr">
+                    <button class="btn btn-outline-success">Husdyr tilladt</button>
+                </form>
+            </th>
+            <th>
+                <form method="post" asp-page-handler="SortByVask">
+                    <button class="btn btn-outline-success">Vaskemaskine</button>
+                </form>
+            </th>
+            <th>
+                <form method="post" asp-page-handler="SortByOpvask">
+                    <button class="btn btn-outline-success">Opvaskemaskine</button>
+                </form>
+            </th>
+            <th>
+                <form method="post" asp-page-handler="SortBySpa">
+                    <button class="btn btn-outline-success">Spa</button>
+                </form>
+            </th>
         </tr>
     </thead>
     <tbody>

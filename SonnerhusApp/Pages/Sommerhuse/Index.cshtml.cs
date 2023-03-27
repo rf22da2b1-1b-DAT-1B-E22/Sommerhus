@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SommerhusLib.DecoratorPattern;
 using SommerhusLib.model;
+using SommerhusLib.model.SortUtil;
 using SonnerhusApp.services;
 using System.Web.Helpers;
 
@@ -145,6 +146,57 @@ namespace SonnerhusApp.Pages.Sommerhuse
             Sommerhuse = _service.GetAll().OrderBy(s => s.Id).ToList(); // sort på id
             
         }
+
+
+        public void OnPostSortById()
+        {
+            OnPostSort2();
+        }
+        public void OnPostSortBySted()
+        {
+            Sommerhuse = _service.GetAll();
+            Sommerhuse.Sort(new SortBySted()); // sort på pris pr uge
+        }
+        public void OnPostSortBySenge()
+        {
+            Sommerhuse = _service.GetAll();
+            Sommerhuse.Sort(new SortBySenge()); // sort på pris pr uge
+        }
+        public void OnPostSortByReng()
+        {
+            Sommerhuse = _service.GetAll();
+            Sommerhuse.Sort(new SortByRengøring()); // sort på pris pr uge
+        }
+        public void OnPostSortByPris()
+        {
+            Sommerhuse = _service.GetAll();
+            Sommerhuse.Sort(new SortPrisHøjLav()); // sort på pris pr uge
+        }
+        public void OnPostSortByHusdyr()
+        {
+            Sommerhuse = _service.GetAll();
+            Sommerhuse.Sort(new SortByHusdyr()); // sort på pris pr uge
+        }
+        public void OnPostSortByVask()
+        {
+            Sommerhuse = _service.GetAll();
+            Sommerhuse.Sort(new SortByVask()); // sort på pris pr uge
+        }
+        public void OnPostSortByOpvask()
+        {
+            Sommerhuse = _service.GetAll();
+            Sommerhuse.Sort(new SortByOpvask()); // sort på pris pr uge
+        }
+        public void OnPostSortBySpa()
+        {
+            Sommerhuse = _service.GetAll();
+            Sommerhuse.Sort(new SortBySpa()); // sort på pris pr uge
+        }
+
+
+
+
+
 
         /*
          * help methods

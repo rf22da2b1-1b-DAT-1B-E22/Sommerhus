@@ -59,10 +59,7 @@ namespace SonnerhusApp.services
                 {
                     throw new ArgumentException("Kunne ikke slette sommerhuset");
                 }
-
             }
-
-            return hus;
         }
 
         public List<Sommerhus> GetAll()
@@ -80,7 +77,6 @@ namespace SonnerhusApp.services
                 {
                     list.Add(ReadSommerhus(reader));
                 }
-
             }
 
             return list;
@@ -106,12 +102,60 @@ namespace SonnerhusApp.services
 
         public Sommerhus GetById(int id)
         {
-            throw new NotImplementedException();
+            String sqlInsert = "select * from Sommerhus where Id = @Id";
+            List<Sommerhus> list = new List<Sommerhus>();
+
+            using (SqlConnection conn = new SqlConnection(Secret.GetConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sqlInsert, conn);
+                cmd.Parameters.AddWithValue("@Id", id);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    return ReadSommerhus(reader);
+                }
+            }
+
+            throw new KeyNotFoundException();
         }
 
-        public Sommerhus Update(int id, Sommerhus hus)
+        public Sommerhus Update(int id, Sommerhus sommerhus)
         {
-            throw new NotImplementedException();
+            String sqlInsert = "update Sommerhus " +
+                "set Sted = @Sted, PrisPrUge = @Pris, AntalSenge = @Senge, Rengoering = @Reng, " +
+                "Husdyr = @Husdyr, Vaskemaskine = @Vask, Opvaskemaskine = @Opvask, SPA = @Spa " +
+                "where Id = @Id";
+
+            using (SqlConnection conn = new SqlConnection(Secret.GetConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sqlInsert, conn);
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Sted", sommerhus.Sted.ToString());
+                cmd.Parameters.AddWithValue("@Pris", sommerhus.PrisPrUge);
+                cmd.Parameters.AddWithValue("@Senge", sommerhus.AntalSenge);
+                cmd.Parameters.AddWithValue("@Reng", sommerhus.Rengøring);
+                cmd.Parameters.AddWithValue("@Husdyr", sommerhus.Faciliteter.Husdyr);
+                cmd.Parameters.AddWithValue("@Vask", sommerhus.Faciliteter.Vaskemaskine);
+                cmd.Parameters.AddWithValue("@Opvask", sommerhus.Faciliteter.Opvaskemaskine);
+                cmd.Parameters.AddWithValue("@Spa", sommerhus.Faciliteter.Spa);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    sommerhus.Id = id;
+                }
+                else
+                {
+                    throw new ArgumentException("Kunne ikke oprette sommerhuset");
+                }
+
+            }
+
+            return sommerhus;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SommerhusLib.model
 {
     public enum StedType  {Bornholm, Nordjylland, Vestjylland, Sønderjyllend, Fyn, Vestsjælland, Falster, Øvrige}
-    public class Sommerhus
+    public class Sommerhus : IComparable<Sommerhus>
     {
         public int Id { get; set; }
         public StedType Sted { get; set; }
@@ -36,6 +36,11 @@ namespace SommerhusLib.model
             return $"{{{nameof(Id)}={Id.ToString()}, {nameof(Sted)}={Sted}, {nameof(PrisPrUge)}={PrisPrUge.ToString()}, {nameof(AntalSenge)}={AntalSenge.ToString()}, {nameof(Rengøring)}={rengøring}, {nameof(Faciliteter)}={Faciliteter}}}";
         }
 
-       
+        public int CompareTo(Sommerhus? other)
+        {
+            if (other is null) return -1;
+            
+            return PrisPrUge - other.PrisPrUge;
+        }
     }
 }

@@ -135,6 +135,16 @@ namespace SonnerhusApp.Pages.Sommerhuse
 
 
 
+        public void OnPostSort1()
+        {
+            Sommerhuse = _service.GetAll();
+            Sommerhuse.Sort(); // sort på pris pr uge
+        }
+        public void OnPostSort2()
+        {
+            Sommerhuse = _service.GetAll().OrderBy(s => s.Id).ToList(); // sort på id
+            
+        }
 
         /*
          * help methods

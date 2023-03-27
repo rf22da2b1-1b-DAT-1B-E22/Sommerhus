@@ -35,5 +35,7 @@ namespace SommerhusLib.model
             String rengøring = (Rengøring) ? "Rengøring" : "Ingen rengøring";
             return $"{{{nameof(Id)}={Id.ToString()}, {nameof(Sted)}={Sted}, {nameof(PrisPrUge)}={PrisPrUge.ToString()}, {nameof(AntalSenge)}={AntalSenge.ToString()}, {nameof(Rengøring)}={rengøring}, {nameof(Faciliteter)}={Faciliteter}}}";
         }
+
+       
     }
 }

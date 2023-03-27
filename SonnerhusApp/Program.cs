@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 
-builder.Services.AddSingleton<ISommerhusRepositoryService, SommerhusRepositoryService>();
+builder.Services.AddSingleton<ISommerhusRepositoryService, SommerhusRepositoryServiceDB>();
 
 var app = builder.Build();
 

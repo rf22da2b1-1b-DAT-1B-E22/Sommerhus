@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SommerhusLib.DecoratorPattern;
 using SommerhusLib.model;
 using SonnerhusApp.services;
+using System.Web.Helpers;
 
 namespace SonnerhusApp.Pages.Sommerhuse
 {

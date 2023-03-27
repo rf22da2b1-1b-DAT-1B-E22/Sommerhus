@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SommerhusLib", "SommerhusLib\SommerhusLib.csproj", "{F8C0B373-D36D-4A43-8461-F7F7DD905029}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonnerhusApp", "SonnerhusApp\SonnerhusApp.csproj", "{13E60C76-7DAD-46B8-9668-7AAB14E83B1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SonnerhusApp", "SonnerhusApp\SonnerhusApp.csproj", "{13E60C76-7DAD-46B8-9668-7AAB14E83B1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FillDatabaseApp", "FillDatabaseApp\FillDatabaseApp.csproj", "{A96C0388-7BF1-4575-B8FA-5A958C6CDCBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{13E60C76-7DAD-46B8-9668-7AAB14E83B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13E60C76-7DAD-46B8-9668-7AAB14E83B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13E60C76-7DAD-46B8-9668-7AAB14E83B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A96C0388-7BF1-4575-B8FA-5A958C6CDCBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A96C0388-7BF1-4575-B8FA-5A958C6CDCBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A96C0388-7BF1-4575-B8FA-5A958C6CDCBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A96C0388-7BF1-4575-B8FA-5A958C6CDCBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
